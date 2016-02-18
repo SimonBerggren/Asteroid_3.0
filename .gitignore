@@ -24,3 +24,8 @@
 *.exe
 *.out
 *.app
+
+bin/intermediates/
+*.ilk
+*.pdb
+*.ipdb
