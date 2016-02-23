@@ -1,13 +1,20 @@
 #pragma once
-#include "FSMController.h"
-#include "ShipStates.h"
-#include "Projectile.h"
-#include "Asteroid.h"
-#include "Utilities.h"
+#include "FuSM/FuSMController.h"
+#include "FSM/FSMController.h"
+#include "FuSM/FShipStates.h"
+#include "DT/DTController.h"
+#include "FSM/ShipStates.h"
+
+#define DEBUG						1			// draw debug stuff
+
+#define HUMAN_CONTROL		0			// using keyboard input?
+#define FSM							0			// using fsm?
+#define FuSM							0			// using fuzzy fsm?
+#define DT								1			// using decision tree?
 
 #define PRE_GAME_TIME		1.0f		// time before game starts
-#define MIN_SPAWN_TIME		5.0f		// minimum time between asteroid spawns
-#define MAX_SPAWN_TIME		2.5f		// maximum time between asteroid spawns
+#define MIN_SPAWN_TIME		1.0f		// minimum time between asteroid spawns
+#define MAX_SPAWN_TIME		2.0f		// maximum time between asteroid spawns
 #define SPAWN_TICK				0.5f		// how much spawn time is decreasing for each new asteroid
 
 class GameSession
@@ -16,7 +23,13 @@ class GameSession
 	float m_SpawnTime = MAX_SPAWN_TIME;		// current time between asteroid spawns
 	sf::Clock m_SpawnTimer;								// keeps check of when to spawn a new asteroid
 
-	FSMController* m_Controller;								// controls ship
+#if FSM
+	fsm::FSMController* m_FsmController;			// controls ship
+#elif FuSM
+	fusm::FuSMController* m_FusmController;		// controls ship
+#elif DT
+	DTController* m_DTController;
+#endif
 	Ship* m_Ship;												// controlled by AI
 	std::vector<Asteroid*> m_Asteroids;				// asteroids in game
 	std::vector<Projectile*> m_Projectiles;			// projectiles in game

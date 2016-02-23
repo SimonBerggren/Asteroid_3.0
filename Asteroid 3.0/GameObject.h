@@ -18,14 +18,15 @@ public:
 	virtual void Update(float delta);															// moves object in direction with speed
 	virtual void Draw();																			// draws object to render window
 
-	// local bounds gives incorrect position but we want its size
-	sf::FloatRect GetRect() const { return sf::FloatRect(getPosition().x - getOrigin().x, getPosition().y - getOrigin().y, getLocalBounds().width, getLocalBounds().height); }
-
 	void SetX(float x) { setPosition(x, getPosition().y); }		// set x position
 	void SetY(float y) { setPosition(getPosition().x, y); }		// set y position
 
 	float X() const { return getPosition().x; }		// x position
 	float Y() const { return getPosition().y; }		// y position
+
+	sf::FloatRect GetRect() const { return sf::FloatRect(getPosition().x - getOrigin().x, getPosition().y - getOrigin().y, getLocalBounds().width, getLocalBounds().height); }
+	sf::Vector2f GetDirection() const { return m_Direction; }
+	float GetSpeed() const { return m_Speed; }
 
 private:
 	// functions below are purely for convencience when reading update function

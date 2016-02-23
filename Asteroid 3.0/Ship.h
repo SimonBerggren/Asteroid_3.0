@@ -2,10 +2,10 @@
 
 #include "Projectile.h"
 
-#define SHIP_RELOAD_TIME	0.25f		// after each shot, we need to reload
-#define SHIP_MAX_SPEED		7.5f		// maximum speed, works both forward and backward
-#define SHIP_MIN_SPEED		0.1f		// while not within the limit, we apply friciton, otherwise breaks are applied
-#define SHIP_FRICTION			0.99f		// friction applied when not thrusting
+#define SHIP_RELOAD_TIME	0.5f		// after each shot, we need to reload
+#define SHIP_MAX_SPEED		5.0f		// maximum speed, works both forward and backward
+#define SHIP_MIN_SPEED		0.1f		// while not within the limit, we apply friciton, otherwise speed is set to 0
+#define SHIP_FRICTION			0.95f		// friction applied when not thrusting
 #define SHIP_STEER_POWER	5.0f		// how hard ship will turn
 
 class Ship : public GameObject

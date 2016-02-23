@@ -1,8 +1,7 @@
 #pragma once
-#include "State.h"
 #include "FSMController.h"
 
-namespace state
+namespace fsm { namespace state
 {
 	////////////////////////////////// IDLE STATE /////////////////////////////////////////
 
@@ -75,4 +74,4 @@ namespace state
 		virtual void Execute(FSMController*) override;
 		virtual void Exit(FSMController*) override;
 	};
-}
+}}

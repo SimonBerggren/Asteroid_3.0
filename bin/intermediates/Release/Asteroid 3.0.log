@@ -1,0 +1,12 @@
+﻿  DTController.cpp
+c:\users\simon\desktop\asteroid 3.0\asteroid 3.0\Utilities.h(34): warning C4244: 'return': conversion from 'long double' to 'float', possible loss of data
+c:\users\simon\desktop\asteroid 3.0\asteroid 3.0\Utilities.h(39): warning C4244: 'return': conversion from 'long double' to 'float', possible loss of data
+c:\users\simon\desktop\asteroid 3.0\asteroid 3.0\Utilities.h(98): warning C4244: 'return': conversion from 'long double' to 'float', possible loss of data
+c:\users\simon\desktop\asteroid 3.0\asteroid 3.0\Utilities.h(112): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\simon\desktop\asteroid 3.0\asteroid 3.0\Utilities.h(119): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating code
+  1 of 407 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Asteroid 3.0.vcxproj -> C:\Users\Simon\Desktop\Asteroid 3.0\bin\x64\Release\Asteroid 3.0.exe

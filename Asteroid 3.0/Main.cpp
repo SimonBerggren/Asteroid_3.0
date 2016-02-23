@@ -49,5 +49,6 @@ int main()
 	// clean up
 	delete game;
 	delete window;
+
 	return EXIT_SUCCESS;
 }

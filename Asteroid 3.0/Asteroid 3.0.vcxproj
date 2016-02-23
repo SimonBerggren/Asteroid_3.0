@@ -146,25 +146,35 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Asteroid.cpp" />
-    <ClCompile Include="FSMController.cpp" />
+    <ClCompile Include="DT\DTController.cpp" />
+    <ClCompile Include="FSM\FSMController.cpp" />
+    <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="FuSM\FuSMController.cpp" />
+    <ClCompile Include="FuSM\FShipStates.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameSession.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Ship.cpp" />
-    <ClCompile Include="ShipStates.cpp" />
+    <ClCompile Include="FSM\ShipStates.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets.h" />
     <ClInclude Include="Asteroid.h" />
-    <ClInclude Include="FSMController.h" />
+    <ClInclude Include="DT\DTController.h" />
+    <ClInclude Include="FSM\FSMController.h" />
+    <ClInclude Include="Controller.h" />
+    <ClInclude Include="FuSM\FuSMController.h" />
+    <ClInclude Include="FuSM\FShipStates.h" />
+    <ClInclude Include="FuSM\FState.h" />
+    <ClInclude Include="FuSM\FStateMachine.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameSession.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Ship.h" />
-    <ClInclude Include="ShipStates.h" />
-    <ClInclude Include="State.h" />
-    <ClInclude Include="StateMachine.h" />
+    <ClInclude Include="FSM\ShipStates.h" />
+    <ClInclude Include="FSM\State.h" />
+    <ClInclude Include="FSM\StateMachine.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

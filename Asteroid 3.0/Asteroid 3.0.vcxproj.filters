@@ -1,102 +1,100 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Header Files\Entities">
+    <Filter Include="Entities">
       <UniqueIdentifier>{3eabe10c-9042-43d1-be0e-bd6b5c42e913}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\FSM">
+    <Filter Include="FSM">
       <UniqueIdentifier>{ef673372-7b3e-400b-96dd-05033f364f2e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Utilities">
+    <Filter Include="FuSM">
+      <UniqueIdentifier>{493a2aeb-1d47-473c-9b3e-3bbebb2d9f9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
       <UniqueIdentifier>{fee693ce-696e-4245-a943-a9af6c0dbb26}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Entities">
-      <UniqueIdentifier>{e38b70ba-0e02-4f7c-8fed-1c8b3823da83}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\FSM">
-      <UniqueIdentifier>{3dd04aea-ac77-4226-9d96-9a1edfcf18a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Controller">
-      <UniqueIdentifier>{c23841d9-763e-42bc-97ce-ab580ebb136a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Controller">
-      <UniqueIdentifier>{9adff8d6-7cc1-4d6f-820c-e0ea34056763}</UniqueIdentifier>
+    <Filter Include="DT">
+      <UniqueIdentifier>{0acfab8c-3c4b-4697-8902-01e27f96ed4f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="FSM\FSMController.cpp">
+      <Filter>FSM</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files\Entities</Filter>
+    <ClCompile Include="FSM\ShipStates.cpp">
+      <Filter>FSM</Filter>
     </ClCompile>
-    <ClCompile Include="ShipStates.cpp">
-      <Filter>Source Files\FSM</Filter>
-    </ClCompile>
-    <ClCompile Include="GameSession.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="FuSM\FuSMController.cpp">
+      <Filter>FuSM</Filter>
     </ClCompile>
     <ClCompile Include="Asteroid.cpp">
-      <Filter>Source Files\Entities</Filter>
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Entities</Filter>
     </ClCompile>
     <ClCompile Include="Projectile.cpp">
-      <Filter>Source Files\Entities</Filter>
+      <Filter>Entities</Filter>
     </ClCompile>
     <ClCompile Include="Ship.cpp">
-      <Filter>Source Files\Entities</Filter>
+      <Filter>Entities</Filter>
     </ClCompile>
-    <ClCompile Include="FSMController.cpp">
-      <Filter>Source Files\Controller</Filter>
+    <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="GameSession.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="FuSM\FShipStates.cpp">
+      <Filter>FuSM</Filter>
     </ClCompile>
+    <ClCompile Include="DT\DTController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObject.h">
-      <Filter>Header Files\Entities</Filter>
+      <Filter>Entities</Filter>
     </ClInclude>
     <ClInclude Include="Ship.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="State.h">
-      <Filter>Header Files\FSM</Filter>
-    </ClInclude>
-    <ClInclude Include="ShipStates.h">
-      <Filter>Header Files\FSM</Filter>
-    </ClInclude>
-    <ClInclude Include="StateMachine.h">
-      <Filter>Header Files\FSM</Filter>
+      <Filter>Entities</Filter>
     </ClInclude>
     <ClInclude Include="Utilities.h">
-      <Filter>Header Files\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="GameSession.h">
-      <Filter>Header Files</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Assets.h">
-      <Filter>Header Files\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Asteroid.h">
-      <Filter>Header Files\Entities</Filter>
+      <Filter>Entities</Filter>
     </ClInclude>
     <ClInclude Include="Window.h">
-      <Filter>Header Files\Utilities</Filter>
+      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Projectile.h">
-      <Filter>Header Files\Entities</Filter>
+      <Filter>Entities</Filter>
     </ClInclude>
-    <ClInclude Include="FSMController.h">
-      <Filter>Header Files\Controller</Filter>
+    <ClInclude Include="FSM\FSMController.h">
+      <Filter>FSM</Filter>
     </ClInclude>
+    <ClInclude Include="FSM\State.h">
+      <Filter>FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="FSM\ShipStates.h">
+      <Filter>FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="FSM\StateMachine.h">
+      <Filter>FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="FuSM\FuSMController.h">
+      <Filter>FuSM</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h" />
+    <ClInclude Include="GameSession.h" />
+    <ClInclude Include="FuSM\FStateMachine.h">
+      <Filter>FuSM</Filter>
+    </ClInclude>
+    <ClInclude Include="FuSM\FState.h">
+      <Filter>FuSM</Filter>
+    </ClInclude>
+    <ClInclude Include="FuSM\FShipStates.h">
+      <Filter>FuSM</Filter>
+    </ClInclude>
+    <ClInclude Include="DT\DTController.h" />
   </ItemGroup>
 </Project>

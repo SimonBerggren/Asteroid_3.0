@@ -1,7 +1,7 @@
 #include "ShipStates.h"
 
-namespace state
-{
+namespace fsm { namespace state {
+
 	////////////////////////////////// IDLE STATE /////////////////////////////////////////
 
 	Idle* Idle::Instance()
@@ -57,23 +57,37 @@ namespace state
 	void Approach::Execute(FSMController * controller)
 	{
 		// if there is no asteroids, wait
-		if (controller->GetAsteroids().size() == 0)
+		if (controller->GetAsteroids().size() == 0 || !controller->GetClosestAsteroid())
 		{
 			controller->GetFSM()->ChangeState(Idle::Instance());
 			return;
 		}
 
-		if (controller->DistToAsteroid() < MIN_DISTANCE_ASTEROID)	// if closest asteroid is too close
+		if (controller->DistToAsteroid() <= MIN_DISTANCE_ASTEROID)	// if closest asteroid is too close
 			controller->GetFSM()->ChangeState(Evade::Instance());
 		else if (controller->CanShoot())												// if target is in line of sight
 			controller->GetFSM()->ChangeState(Attack::Instance());
+		else
+		{
+			float currentAngle = controller->ShipAngle();
+			float targetAngle = controller->AngleToTarget();
 
-		sf::Vector2f directionToTarget = utils::vec::Direction(controller->GetShip()->getPosition(), 
-																					controller->GetClosestAsteroid()->getPosition());
-		directionToTarget = utils::vec::Normalized(directionToTarget);
-		float angleToTarget = utils::vec::ToDegrees(directionToTarget);
-		//controller->GetShip()->Steer(angleToTarget);
-		std::cout << angleToTarget << std::endl;
+			if (targetAngle > currentAngle)
+			{
+				if (utils::Abs(currentAngle - targetAngle) < 180.0f)
+					controller->GetShip()->Steer(1.0f);
+				else
+					controller->GetShip()->Steer(-1.0f);
+			}
+			else
+			{
+				if (utils::Abs(currentAngle - targetAngle) < 180.0f)
+					controller->GetShip()->Steer(-1.0f);
+				else
+					controller->GetShip()->Steer(1.0f);
+			}
+			controller->GetShip()->Thrust(1.0f);
+		}
 	}
 
 	void Approach::Exit(FSMController * controller)
@@ -96,7 +110,34 @@ namespace state
 
 	void Evade::Execute(FSMController * controller)
 	{
+		// if we have gotten far enough away
+		if (controller->DistToAsteroid() >= MIN_DISTANCE_ASTEROID * 1.3f)
+			controller->GetFSM()->ChangeState(state::Idle::Instance());
 
+		float currentAngle = controller->ShipAngle();
+		float targetAngle = controller->AngleToTarget();
+
+		// if we are not facing asteroid, steer away and thrust forward
+		if (utils::Abs(currentAngle - targetAngle) > MIN_ANGLE_TO_BACK)
+		{
+			if (targetAngle > currentAngle)
+			{
+				if (utils::Abs(currentAngle - targetAngle) < 180.0f)
+					controller->GetShip()->Steer(-1.0f);
+				else
+					controller->GetShip()->Steer(1.0f);
+			}
+			else
+			{
+				if (utils::Abs(currentAngle - targetAngle) < 180.0f)
+					controller->GetShip()->Steer(1.0f);
+				else
+					controller->GetShip()->Steer(-1.0f);
+			}
+			controller->GetShip()->Thrust(1.0f);
+		}
+		else // thrust backward
+			controller->GetShip()->Thrust(-1.0f);
 	}
 
 	void Evade::Exit(FSMController * controller)
@@ -112,18 +153,25 @@ namespace state
 		return &instance;
 	}
 
-	void Attack::Enter(FSMController * controller)
+	void Attack::Enter(FSMController* controller)
 	{
 		std::cout << "Entered Attack State" << std::endl;
 	}
 
-	void Attack::Execute(FSMController * controller)
+	void Attack::Execute(FSMController* controller)
+	{
+		// if we are unable to shoot, stay idle
+		if (!controller->CanShoot())
+		{
+			controller->GetFSM()->ChangeState(state::Idle::Instance());
+			return;
+		}
+
+		controller->GetShip()->Shoot();
+	}
+
+	void Attack::Exit(FSMController* controller)
 	{
 
 	}
-
-	void Attack::Exit(FSMController * controller)
-	{
-
-	}
-}
+}}

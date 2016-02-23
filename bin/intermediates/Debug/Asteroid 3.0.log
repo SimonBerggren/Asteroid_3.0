@@ -1,0 +1,13 @@
+﻿Build started 2016-02-16 18:18:26.
+     1>Project "D:\Git\Asteroid 3.0\Asteroid 3.0\Asteroid 3.0.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio\VC\bin\x86_amd64\CL.exe /c /I"D:\Git\Asteroid 3.0\Externals\SFML64\include" /ZI /nologo /W3 /WX- /sdl /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"D:\Git\Asteroid 3.0\bin\intermediates\Debug\\" /Fd"D:\Git\Asteroid 3.0\bin\intermediates\Debug\vc140.pdb" /Gd /TP /errorReport:prompt Main.cpp
+         Main.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Git\Asteroid 3.0\bin\x64\Debug\Asteroid 3.0.exe" /INCREMENTAL /NOLOGO /LIBPATH:"D:\Git\Asteroid 3.0\Externals\SFML64\lib" "sfml-graphics-d.lib" "sfml-window-d.lib" "sfml-system-d.lib" "sfml-audio-d.lib" "sfml-network-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\Git\Asteroid 3.0\bin\x64\Debug\Asteroid 3.0.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Git\Asteroid 3.0\bin\x64\Debug\Asteroid 3.0.lib" /MACHINE:X64 "D:\Git\Asteroid 3.0\bin\intermediates\Debug\Main.obj"
+         Asteroid 3.0.vcxproj -> D:\Git\Asteroid 3.0\bin\x64\Debug\Asteroid 3.0.exe
+     1>Done Building Project "D:\Git\Asteroid 3.0\Asteroid 3.0\Asteroid 3.0.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.31

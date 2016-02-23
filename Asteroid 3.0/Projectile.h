@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObject.h"
 
-#define PROJECTILE_LIFE_TIME 1.5f
+#define PROJECTILE_LIFE_TIME 0.5f
 
 class Projectile : public GameObject
 {

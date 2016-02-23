@@ -14,3 +14,14 @@ void Asteroid::Update(float delta)
 	GameObject::Update(delta);
 	rotate(m_Speed);
 }
+
+void Asteroid::Display()
+{
+	sf::RectangleShape shape(sf::Vector2f(getLocalBounds().width, getLocalBounds().height));
+	shape.setOrigin(shape.getSize() / 2.0f);
+	shape.setPosition(getPosition());
+	shape.setFillColor(sf::Color::Transparent);
+	shape.setOutlineColor(sf::Color::Green);
+	shape.setOutlineThickness(2.0f);
+	window->draw(shape);
+}

@@ -39,6 +39,26 @@ namespace utils
 		return degrees * (std::_Pi / 180);
 	}
 
+	static float Abs(float value)
+	{
+		return (value < 0.0f) ? -value : value;
+	}
+
+	static void Print(float value)
+	{
+		std::cout << value << std::endl;
+	}
+
+	static void Print(char* value)
+	{
+		std::cout << value << std::endl;
+	}
+
+	static void Print(char* text, float value)
+	{
+		std::cout << text << value << std::endl;
+	}
+
 	// Vector
 	namespace vec
 	{

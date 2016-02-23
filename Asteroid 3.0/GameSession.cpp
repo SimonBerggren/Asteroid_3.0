@@ -1,7 +1,5 @@
 #include "GameSession.h"
 
-#define DEBUG 1
-
 GameSession::GameSession()
 {
 	Init();
@@ -24,7 +22,7 @@ void GameSession::Update(float delta)
 		m_SpawnTimer.restart();
 	}
 
-	for (int i = 0; i < m_Projectiles.size(); ++i)			
+	for (int i = 0; i < m_Projectiles.size(); ++i)
 	{
 		m_Projectiles[i]->Update(delta);						// update projectiles
 		if (m_Projectiles[i]->IsDead())						// if projectile's lifetime is up, remove it
@@ -36,11 +34,19 @@ void GameSession::Update(float delta)
 
 	for (int i = 0; i < m_Asteroids.size(); ++i)			// update asteroids
 		m_Asteroids[i]->Update(delta);
+
+#if FSM
+	m_FsmController->Update();									// update controller
+#elif FuSM
+	m_FusmController->Update();									// update controller
+#elif DT
+	m_DTController->Update();
+#endif
+
 	m_Ship->Update(delta);										// update ship
-	m_Controller->Update();									// update controller
 	CheckCollisions();												// check for collision after updating objects' positions
 
-#if DEBUG
+#if HUMAN_CONTROL
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		m_Ship->Steer(-1.0f);
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
@@ -102,12 +108,31 @@ void GameSession::CheckCollisions()
 			}
 		}
 	}
+
+	// check if we removed a current target
+#if FSM
+	m_FsmController->FindClosestAsteroid();
+#elif FuSM
+	m_FusmController->FindClosestAsteroid();
+#elif DT
+	m_DTController->FindClosestAsteroid();
+#endif
 }
 
 void GameSession::Init()
 {
 	m_Ship = new Ship(m_Projectiles);
-	m_Controller = new FSMController(m_Ship, m_Asteroids);
+#if FSM
+	m_FsmController = new fsm::FSMController(m_Ship, m_Asteroids);
+#elif FuSM
+	m_FusmController = new fusm::FuSMController(m_Ship, m_Asteroids);
+	m_FusmController->GetFuSM()->AddState(new fusm::state::Idle(m_FusmController, 0.0f));
+	m_FusmController->GetFuSM()->AddState(new fusm::state::Approach(m_FusmController, 0.6f));
+	m_FusmController->GetFuSM()->AddState(new fusm::state::Evade(m_FusmController, 0.2f));
+	m_FusmController->GetFuSM()->AddState(new fusm::state::Attack(m_FusmController, 0.0f));
+#elif DT
+	m_DTController = new DTController(m_Ship, m_Asteroids);
+#endif
 	m_SpawnTime = MAX_SPAWN_TIME;
 	m_SpawnTimer.restart();
 	m_PreGameTimer.restart();
@@ -115,7 +140,13 @@ void GameSession::Init()
 
 void GameSession::Clear()
 {
-	delete m_Controller;
+#if FSM
+	delete m_FsmController;
+#elif FuSM
+	delete m_FusmController;
+#elif DT
+	delete m_DTController;
+#endif
 	delete m_Ship;
 
 	for (int i = 0; i < m_Projectiles.size(); ++i)	// delete projectiles before clearing = happy heap
@@ -136,6 +167,19 @@ void GameSession::Draw()
 		m_Projectiles[i]->Draw();
 
 	m_Ship->Draw();											// draw ship to window
+
+#if DEBUG
+#if FSM
+	if (m_FsmController->GetClosestAsteroid())
+		m_FsmController->GetClosestAsteroid()->Display();
+#elif FuSM
+	if (m_FusmController->GetClosestAsteroid())
+		m_FusmController->GetClosestAsteroid()->Display();
+#elif DT
+	if (m_DTController->GetClosestAsteroid())
+		m_DTController->GetClosestAsteroid()->Display();
+#endif
+#endif
 
 	if (m_PreGameTimer.getElapsedTime().asSeconds() <= PRE_GAME_TIME)			// if game hasn't started, display timer
 	{

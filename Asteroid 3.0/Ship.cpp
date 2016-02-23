@@ -3,7 +3,6 @@
 Ship::Ship(std::vector<Projectile*>& projectiles)
 	: GameObject(*textures::Ship(), sf::Vector2f(WINDOW_WIDTH / 2.0f, WINDOW_HEIGHT / 2.0f)), m_Projectiles(projectiles)
 {
-
 	m_Direction = utils::vec::FromRadians(getRotation());
 }
 
